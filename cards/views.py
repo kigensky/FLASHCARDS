@@ -63,5 +63,31 @@ def flashCardsCreateView(request):
     
     return render(request,'cards/flash_cards_form.html', ctx)
     
-# def  flashCard(request):
+def flashCardsDelete(request, id):
+    card = FlashCards.objects.get(pk=id)
+    
+    card.delete()
+    
+    messages.success(request, 'Successfully deleted.')
+    return redirect('cards-home')
+    
+    
+def flashCardsUpdate(request,id):
+    card = FlashCards.objects.get(pk=id)
+    
+    form = FlashCardsForm(instance=card)
+    
+    if request.method == 'POST':
+        form = FlashCardsForm(request.POST)
+        if form.is_valid():
+            # form.save()
+            FlashCards.objects.filter(pk=id).update(title=form.cleaned_data['title'], description=form.cleaned_data['description'], subject_id=form.cleaned_data['subject'])
+        
+            messages.success(request, 'Successfully updated.')
+            return redirect('cards-home')
+    
+    ctx = {'form':form}
+    
+    return render(request,'cards/flash_cards_form.html', ctx)
+    
     

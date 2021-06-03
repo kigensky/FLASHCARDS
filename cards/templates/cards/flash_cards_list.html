@@ -3,7 +3,7 @@
 
 <div class="row pt-3">
   <div class="col-md-12">
-    <p><strong> Site of the Day </strong> {{ now | date:"D d M Y"}}</p>
+    <p><strong> Flash Cards </strong> {{ now | date:"D d M Y"}}</p>
   </div>
 </div>
 <div class="row">
@@ -16,7 +16,10 @@
           
         <p class='text-muted'>{{ card.description}}</p>
         </div>
-       
+      <div class="card-footer">
+      <a class='btn btn-danger float-left' href="{% url 'cards-delete' card.id %}">Delete</a>
+      <a class='btn btn-warning float-right' href="{% url 'cards-update' card.id %}">update</a>
+      </div>
       </div>
     </div>
     {% endfor %}
