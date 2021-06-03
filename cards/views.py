@@ -63,5 +63,5 @@ def flashCardsCreateView(request):
     
     return render(request,'cards/flash_cards_form.html', ctx)
     
-# def  flashCardsListView(request):
+# def  flashCard(request):
     
